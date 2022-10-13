@@ -9,42 +9,60 @@ package model;
  * @author ADMIN
  */
 public class Student {
-    private String id;
-    private String name;
-    private String slot;
+    private String stid;
+    private String stmember;
+    private String stsurname;
+    private String stmiddlename;
+    private String stgivenname;
 
     public Student() {
     }
 
-    public Student(String id, String name, String slot) {
-        this.id = id;
-        this.name = name;
-        this.slot = slot;
+    public Student(String stid, String stmember, String stsurname, String stmiddlename, String stgivenname) {
+        this.stid = stid;
+        this.stmember = stmember;
+        this.stsurname = stsurname;
+        this.stmiddlename = stmiddlename;
+        this.stgivenname = stgivenname;
     }
 
-    public String getId() {
-        return id;
+    public String getStid() {
+        return stid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStid(String stid) {
+        this.stid = stid;
     }
 
-    public String getName() {
-        return name;
+    public String getStmember() {
+        return stmember;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStmember(String stmember) {
+        this.stmember = stmember;
     }
 
-    public String getSlot() {
-        return slot;
+    public String getStsurname() {
+        return stsurname;
     }
 
-    public void setSlot(String slot) {
-        this.slot = slot;
+    public void setStsurname(String stsurname) {
+        this.stsurname = stsurname;
     }
-    
-    
+
+    public String getStmiddlename() {
+        return stmiddlename;
+    }
+
+    public void setStmiddlename(String stmiddlename) {
+        this.stmiddlename = stmiddlename;
+    }
+
+    public String getStgivenname() {
+        return stgivenname;
+    }
+
+    public void setStgivenname(String stgivenname) {
+        this.stgivenname = stgivenname;
+    }  
 }

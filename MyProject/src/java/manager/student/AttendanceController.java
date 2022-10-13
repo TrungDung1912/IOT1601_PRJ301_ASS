@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller.student;
+package manager.student;
 
 import dal.StudentDBContext;
 import jakarta.servlet.ServletException;
@@ -17,27 +17,22 @@ import model.Student;
  *
  * @author ADMIN
  */
-public class SearchController extends HttpServlet{
-
-    
-   @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-    throws ServletException, IOException {
-        String raw_name = req.getParameter("name");
-        StudentDBContext db = new StudentDBContext();
-        ArrayList<Student> list = db.list();
-        req.setAttribute("students", list);
-        req.getRequestDispatcher("../view/student/search.jsp").forward(req, resp);
-    } 
+public class AttendanceController extends HttpServlet
+{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         StudentDBContext db = new StudentDBContext();
-        ArrayList<Student> list = db.list();
-        req.setAttribute("students", list);
-        req.getRequestDispatcher("../view/student/stattendance.jsp").forward(req, resp);
+        ArrayList<Student> list2 = db.list();
+        req.setAttribute("students", list2);
+        req.getRequestDispatcher("../view/student/checkattendance.jsp").forward(req, resp);
     }
 
-    
-    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StudentDBContext db = new StudentDBContext();
+        ArrayList<Student> list = db.list();
+        req.setAttribute("students", list);
+        req.getRequestDispatcher("../view/student/attendance.jsp").forward(req, resp);
+    }     
 }

@@ -12,6 +12,14 @@
         <servlet-name>studentsearchcontroller</servlet-name>
         <url-pattern>/student/search</url-pattern>
     </servlet-mapping>  
+    <servlet>
+            <servlet-name>studentattendancecontroller</servlet-name>
+            <servlet-class>manager.student.AttendanceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentattendancecontroller</servlet-name>
+        <url-pattern>/student/attendance</url-pattern>
+    </servlet-mapping>  
     <session-config>
         <session-timeout>
             30
