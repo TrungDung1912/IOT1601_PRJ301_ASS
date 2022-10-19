@@ -23,17 +23,13 @@
                 <tr> 
                     <td>Id</td>
                     <td>Member</td>
-                    <td>Surname</td>
-                    <td>Middlename</td>
-                    <td>Givenname</td>
+                    <td>Full Name</td>
                 </tr>
                 <c:forEach items="${requestScope.students}" var="s">
                   <tr>
-                    <td>${s.stid}</td>
-                    <td>${s.stmember}</td>
-                    <td>${s.stsurname}</td>
-                    <td>${s.stmiddlename}</td>
-                    <td>${s.stgivenname}</td>
+                    <td>${s.stdid}</td>
+                    <td>${s.stdmember}</td>
+                    <td>${s.stdname}</td>
                 </tr>  
                 </c:forEach>
             </table>
