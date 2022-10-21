@@ -20,24 +20,24 @@ public class DateTimeHelper {
         return new SimpleDateFormat(format).parse(value);
     }
 
-    public static Date removeTime(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
+    public static Date deleteTime(Date date) {
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(date);
+        cl.set(Calendar.HOUR_OF_DAY, 0);
+        cl.set(Calendar.MINUTE, 0);
+        cl.set(Calendar.SECOND, 0);
+        cl.set(Calendar.MILLISECOND, 0);
+        return cl.getTime();
     }
 
     public static java.util.Date toDateUtil(java.sql.Date d) {
         java.util.Date x = new java.util.Date(d.getTime());
-        x = removeTime(x);
+        x = deleteTime(x);
         return x;
     }
 
     public static java.sql.Date toDateSql(java.util.Date d) {
-        d= removeTime(d);
+        d = deleteTime(d);
         return new java.sql.Date(d.getTime());
     }
 

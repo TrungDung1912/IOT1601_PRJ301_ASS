@@ -12,6 +12,14 @@
         <servlet-name>timetablecontroller</servlet-name>
         <url-pattern>/lecturer/timetable</url-pattern>
     </servlet-mapping>  
+    <servlet>
+            <servlet-name>attendancecontroller</servlet-name>
+            <servlet-class>controller.lecturer.AttendanceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>attendancecontroller</servlet-name>
+        <url-pattern>/lecturer/attendance</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

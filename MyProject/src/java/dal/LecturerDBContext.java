@@ -37,16 +37,18 @@ public class LecturerDBContext extends DBContext<Lecturer> {
     @Override
     public Lecturer get(int id) {
         try {
-            String sql = "SELECT lid,lname FROM Lecturer WHERE lid = ?";
+            String sql = "SELECT lid\n"
+                    + "      ,lname\n"
+                    + "  FROM Lecturer\n"
+                    + "  WHERE lid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
-            if(rs.next())
-            {
-                Lecturer l = new Lecturer();
-                l.setId(rs.getInt("lid"));
-                l.setName(rs.getString("lname"));
-                return l;
+            if (rs.next()) {
+                Lecturer lt = new Lecturer();
+                lt.setId(rs.getInt("lid"));
+                lt.setName(rs.getString("lname"));
+                return lt;
             }
         } catch (SQLException ex) {
             Logger.getLogger(LecturerDBContext.class.getName()).log(Level.SEVERE, null, ex);

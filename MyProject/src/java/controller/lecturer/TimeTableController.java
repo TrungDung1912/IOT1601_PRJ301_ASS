@@ -63,16 +63,16 @@ public class TimeTableController extends HttpServlet{
         req.setAttribute("to", to);
         req.setAttribute("dates", DateTimeHelper.getDateList(from, to));
         
-        TimeSlotDBContext slotDB = new TimeSlotDBContext();
-        ArrayList<TimeSlot> slots = slotDB.list();
+        TimeSlotDBContext slot = new TimeSlotDBContext();
+        ArrayList<TimeSlot> slots = slot.list();
         req.setAttribute("slots", slots);
         
-        SessionDBContext sesDB = new SessionDBContext();
-        ArrayList<Session> sessions = sesDB.sieves(lid, from, to);
+        SessionDBContext ses = new SessionDBContext();
+        ArrayList<Session> sessions = ses.sieves(lid, from, to);
         req.setAttribute("sessions", sessions);
         
-        LecturerDBContext lecDB = new LecturerDBContext();
-        Lecturer lecturer = lecDB.get(lid);
+        LecturerDBContext lec = new LecturerDBContext();
+        Lecturer lecturer = lec.get(lid);
         req.setAttribute("lecturer", lecturer);
        
         req.getRequestDispatcher("../view/lecturer/timetable.jsp").forward(req, resp);  

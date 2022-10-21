@@ -68,19 +68,20 @@
             </div> 
             <div class="col-md-12">
                 <br/>
-                Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/>
+                <h1 style="text-align: center;">Time Table for </h1>
+                Lecturer: <input style="text-align: center;" readonly="readonly" value="${requestScope.lecturer.name}"/>
                 <form action="timetable" method="GET">
                     <input type="hidden" name="lid" value="${param.lid}"/><br/>
                     From: <input type="date" name="from" value="${requestScope.from}"/>
                     To: <input type="date" name="to" value="${requestScope.to}"/><br/>
-                    <input type="submit" value="View"/> 
+                    <br/><input type="submit" value="View" style="background-color: #6B90DA; "/> 
                 </form>
             </div>       
             <br/>     
             <br/> 
             <div class="col-md-12" style="border: 2px solid">        
                 <table style =" width: 100%;">
-                    <thead style="background-color: aquamarine;  background-color: #6B90DA; ">
+                    <thead style="background-color: #6B90DA;">
                         <tr>
                             <th></th>
                                 <c:forEach items="${requestScope.dates}" var="d">
@@ -96,14 +97,14 @@
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px"">
                                         <c:forEach items="${requestScope.sessions}" var="ses">
                                             <c:if test="${helper.compare(ses.date,d) eq 0 and (ses.timeslot.id eq slot.id)}">
-                                                <a href="att?id=${ses.id}">${ses.group.name}-${ses.group.subject.name}</a>
+                                                <a href="attendance?id=${ses.id}">${ses.group.name}-${ses.lecturer.name}</a>
                                                 <br/>
                                                 at ${ses.room.name}
                                                 <c:if test="${ses.attanded}">
-                                                    <img src="" alt=""/>
+                                                    <p style="color: green">(attended)</p>
                                                 </c:if>
                                                 <c:if test="${!ses.attanded}">
-                                                    <img src="" alt=""/>
+                                                    <p style="color: red">(absent)</p>
                                                 </c:if>
                                             </c:if>
 
@@ -116,6 +117,14 @@
                 </table>
             </div>
         </div>	 <!--Kết thúc container-fluid-->
+        <br/>
+        <br/>
+        <div style="padding:10px; border-top: 1px solid;">
+            <strong>More note / Chú thích thêm:</strong><br/>
+            <font style="color: green">(Attended):</font>had attended this activity / đã tham gia hoạt động này<br/>
+            <font style="color: red">(Absent):</font> had NOT attended this activity / đã vắng mặt buổi này<br/>
+            <p>(-): no data was given / chưa có dữ liệu</p>
+        </div>
         <br/>
         <br/>
         <div class="footer" style="padding:10px; border-top: 1px solid;">

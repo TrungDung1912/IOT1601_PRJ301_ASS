@@ -49,10 +49,10 @@ public class TimeSlotDBContext extends DBContext<TimeSlot> {
             ResultSet rs = stm.executeQuery();
             while(rs.next())
             {
-                TimeSlot slot = new TimeSlot();
-                slot.setId(rs.getInt("tid"));
-                slot.setDescription(rs.getString("description"));
-                slots.add(slot);
+                TimeSlot sl = new TimeSlot();
+                sl.setId(rs.getInt("tid"));
+                sl.setDescription(rs.getString("description"));
+                slots.add(sl);
             }
         } catch (SQLException ex) {
             Logger.getLogger(TimeSlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
