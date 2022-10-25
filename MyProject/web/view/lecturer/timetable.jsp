@@ -101,10 +101,10 @@
                                                 <br/>
                                                 at ${ses.room.name}
                                                 <c:if test="${ses.attanded}">
-                                                    <p style="color: green">(attended)</p>
+                                                    <p style="color: green">(Done)</p>
                                                 </c:if>
                                                 <c:if test="${!ses.attanded}">
-                                                    <p style="color: red">(absent)</p>
+                                                    <p style="color: red">(Not yet)</p>
                                                 </c:if>
                                             </c:if>
 

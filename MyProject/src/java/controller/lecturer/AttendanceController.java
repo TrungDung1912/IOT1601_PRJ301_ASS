@@ -19,6 +19,7 @@ import model.Student;
  * @author ADMIN
  */
 public class AttendanceController extends HttpServlet{
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session ses = new Session();
@@ -26,11 +27,11 @@ public class AttendanceController extends HttpServlet{
         String[] stdids = req.getParameterValues("stdid");
         for (String stdid : stdids) {
             Attandance a =new Attandance();
-            Student stu = new Student();
-            a.setStudent(stu);
-            a.setDescription(req.getParameter("description" + stdid));
-            a.setPresent(req.getParameter("present" + stdid).equals("present"));
-            stu.setId(Integer.parseInt(stdid));
+            Student s = new Student();
+            a.setStudent(s);
+            a.setDescription(req.getParameter("description"+stdid));
+            a.setPresent(req.getParameter("present"+stdid).equals("present"));
+            s.setId(Integer.parseInt(stdid));
             ses.getAtts().add(a);
         }
         SessionDBContext db = new SessionDBContext();
@@ -38,6 +39,7 @@ public class AttendanceController extends HttpServlet{
         resp.sendRedirect("attendance?id="+ses.getId());
     }
     
+  
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int sesid = Integer.parseInt(req.getParameter("id"));
@@ -46,5 +48,10 @@ public class AttendanceController extends HttpServlet{
         req.setAttribute("ses", s);
         req.getRequestDispatcher("../view/lecturer/attendance.jsp").forward(req, resp);
     }
+    
 
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
 }
