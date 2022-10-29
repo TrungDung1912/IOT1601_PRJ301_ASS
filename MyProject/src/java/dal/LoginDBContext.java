@@ -48,15 +48,16 @@ public class LoginDBContext extends DBContext<Lecturer_Login> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT ln.loid, ln.username, ln.[password]\n"
+            String sql = "SELECT l.lid, l.lname,\n"
+                    + "		 ln.loid, ln.username, ln.[password]\n"
                     + "   FROM Lecturer l\n"
-                    + "          LEFT JOIN Lecturer_Loginz lo ON lo.loid = l.lid\n"
+                    + "          LEFT JOIN Lecturer_Login lo ON lo.loid = l.lid\n"
                     + "	         LEFT JOIN [Login] ln ON lo.loid = ln.loid\n"
-                    + "	  WHERE ln.username = ? AND ln.[password] = ?";
+                    + "	  WHERE ln.loid = ? AND ln.username = ? AND ln.[password] = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
-            stm.setString(1, username);
-            stm.setString(2, password);
+            stm.setString(2, username);
+            stm.setString(3, password);
             rs = stm.executeQuery();
             Lecturer_Login lecturer_lo = null;
             while (rs.next()) {

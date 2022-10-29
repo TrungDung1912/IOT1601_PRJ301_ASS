@@ -26,7 +26,7 @@ public class AttendanceController extends HttpServlet{
         ses.setId(Integer.parseInt(req.getParameter("sesid")));
         String[] stdids = req.getParameterValues("stdid");
         for (String stdid : stdids) {
-            Attandance a =new Attandance();
+            Attandance a = new Attandance();
             Student s = new Student();
             a.setStudent(s);
             a.setDescription(req.getParameter("description"+stdid));

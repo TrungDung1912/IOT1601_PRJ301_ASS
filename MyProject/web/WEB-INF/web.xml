@@ -28,6 +28,14 @@
         <servlet-name>logincontroller</servlet-name>
         <url-pattern>/lecturer/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+            <servlet-name>reportcontroller</servlet-name>
+            <servlet-class>controller.lecturer.ReportController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reportcontroller</servlet-name>
+        <url-pattern>/lecturer/report</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

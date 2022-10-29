@@ -68,13 +68,13 @@
             </div> 
             <div class="col-md-12">
                 <br/>
-                <h1 style="text-align: center;">Time Table for </h1>
-                Lecturer: <input style="text-align: center;" readonly="readonly" value="${requestScope.lecturer.name}"/>
+                <h1 style="text-align: center;">Time Table For </h1>
+                <h2 style="text-align: center;">Lecturer: ${requestScope.lecturer.name}</h2>
                 <form action="timetable" method="GET">
                     <input type="hidden" name="lid" value="${param.lid}"/><br/>
                     From: <input type="date" name="from" value="${requestScope.from}"/>
-                    To: <input type="date" name="to" value="${requestScope.to}"/><br/>
-                    <br/><input type="submit" value="View" style="background-color: #6B90DA; "/> 
+                    To: <input type="date" name="to" value="${requestScope.to}"/>
+                    <input type="submit" value="View" style="background-color: #6B90DA; "/> 
                 </form>
             </div>       
             <br/>     
@@ -85,7 +85,7 @@
                         <tr>
                             <th></th>
                                 <c:forEach items="${requestScope.dates}" var="d">
-                                <th style="border: 1px solid; padding-left: 10px">${helper.getDayNameofWeek(d)}<br/>${d}</th>
+                                    <th style="border: 1px solid; padding-left: 10px">${helper.getDayNameofWeek(d)}<br/>${d}</th>
                                 </c:forEach>
                         </tr>     
                     </thead>
@@ -107,7 +107,6 @@
                                                     <p style="color: red">(Not yet)</p>
                                                 </c:if>
                                             </c:if>
-
                                         </c:forEach>
                                     </td>
                                 </c:forEach>

@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +39,5 @@ public class TimeSlot {
     public void setDescription(String description) {
         this.description = description;
     }
-    
     
 }

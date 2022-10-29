@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet{
         if(lecturer!=null)
         {
             req.getSession().setAttribute("lecturer", lecturer);
-            resp.sendRedirect("timetable?lid="+lecturer.getId());
+            resp.sendRedirect("timetable?lid=" + lecturer.getId());
         }
         else
         {
@@ -43,19 +43,5 @@ public class LoginController extends HttpServlet{
         }
     }   
     
-//    protected void processRequest (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String user = req.getParameter("username");
-//        String pass = req.getParameter("password");
-//        LoginDBContext db = new LoginDBContext();
-//        Lecturer_Login lecturer = db.get(user, pass);
-//        if(lecturer!=null)
-//        {
-//            req.getSession().setAttribute("lecturer", lecturer);
-//            resp.getWriter().println("login successful!");
-//        }
-//        else
-//        {
-//            resp.getWriter().println("login failed!");
-//        }
-//    }    
+
 }
