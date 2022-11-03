@@ -62,40 +62,41 @@
             <br/>
             <br/>
             <div class="col-md-12">
-                <form action="report" method="POST">
+                <form action="report" method="GET">
                     <input type="hidden" name="sesid" value="${param.id}"/>
                     <table style =" width: 100%;">
-                        <thead style="background-color: #6B90DA;">
-                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">No.</th>
+                        <thead style="background-color: #6B90DA;">  
+                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Session ID</th>
                             <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Std ID</th>
                             <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Student Name</th>
                             <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Member ID</th>
-                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Absent(%)</th>
-                            <c:forEach items="${requestScope.list}" var="list" varStatus="loop">
-                                <th style="border: 1px solid; padding: 10px 0px 10px 20px;">${list.date}</th>
-                            </c:forEach>
+                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Absent(%)</th>                          
+                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Date</th>
+                            <th style="border: 1px solid; padding: 10px 0px 10px 20px;">Present</th>
+                            
                         </thead>
                         <tbody>
                             <c:forEach items="${requestScope.ses.atts}" var="a" varStatus="loop">
                                 <tr>
-                                    <td style="height: 100px; border: 1px solid; padding-left: 20px">${loop.index+1}</td>
+                                    <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.session.id}</td>
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.student.id}
                                         <input type="hidden" name="stdid" value="${a.student.id}"/>
-                                    </td>
-                                    
+                                    </td>                                   
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.student.name}</td>
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.student.member}</td>
-                                    <td style="height: 100px; border: 1px solid; padding-left: 20px"></td>
+                                    <td style="height: 100px; border: 1px solid; padding-left: 20px"></td>  
+                                    <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.session.date}</td>                                                                
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px"><input type="text"
                                                             <c:if test="${!a.present}">
                                                                 hidden="P"
                                                             </c:if>         
                                                name="present${a.student.id}" value="P" />
-                                    </td>                       
+                                    </td>    
                                 </tr>   
                             </c:forEach>
                         </tbody>
                     </table>
+                    
                     <br/>
                     <br/>
                 </form>

@@ -8,30 +8,22 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author sonnt
  */
-public class Lecturer_Login {
-    private int id;
+public class Account {
     private String username;
     private String password;
-    private ArrayList<Lecturer> lecturers = new ArrayList<>();
+    private String displayname;
+    private ArrayList<Role> roles = new ArrayList<>();
 
-    public ArrayList<Lecturer> getLecturers() {
-        return lecturers;
+    public ArrayList<Role> getRoles() {
+        return roles;
     }
 
-    public void setLecturers(ArrayList<Lecturer> lecturers) {
-        this.lecturers = lecturers;
+    public void setRoles(ArrayList<Role> roles) {
+        this.roles = roles;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public String getUsername() {
         return username;
     }
@@ -47,6 +39,13 @@ public class Lecturer_Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
+    }
     
 }

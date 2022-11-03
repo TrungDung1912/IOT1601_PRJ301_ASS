@@ -23,7 +23,8 @@ import model.TimeSlot;
  *
  * @author ADMIN
  */
-public class ReportDBContext extends DBContext<Session>{
+public class ReportDBContext extends DBContext<Session> {
+
     @Override
     public void insert(Session model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -41,59 +42,43 @@ public class ReportDBContext extends DBContext<Session>{
 
     @Override
     public Session get(int id) {
-        try {
-            String sql = "SELECT ses.sesid,ses.[index],ses.[date],ses.attanded\n"
-                    + "	,g.gid,g.gname\n"
-                    + "	,sub.subid,sub.subname\n"
-                    + "	,l.lid,l.lname\n"
-                    + "	,s.stdid,s.stdname, s.stdmember\n"
-                    + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
-                    + "		FROM [Session] ses\n"
-                    + "		INNER JOIN [Group] g ON g.gid = ses.gid\n"
-                    + "		INNER JOIN [Subject] sub ON sub.subid = g.subid\n"
-                    + "		INNER JOIN Lecturer l ON l.lid = ses.lid\n"
-                    + "		INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
-                    + "		INNER JOIN [Student] s ON s.stdid = sg.stdid\n"
-                    + "		LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
-                    + " WHERE g.gid = ?";
+        try {          
+            String sql = "SELECT ses.sesid, l.lid, g.gid, g.gname, s.stdid, s.stdmember, s.stdname, ses.date, a.present\n"
+                    + "          FROM [Session] ses\n"
+                    + "		  INNER JOIN [Group] g ON g.gid = ses.gid\n"
+                    + "		  INNER JOIN [Student_Group] st ON st.gid = g.gid\n"
+                    + "		  INNER JOIN [Student] s ON st.stdid = s.stdid\n"
+                    + "		  INNER JOIN Lecturer l ON l.lid = ses.lid\n"
+                    + "		  LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
+                    + "	 WHERE g.gid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
             Session s = null;
             while (rs.next()) {
                 if (s == null) {
-                    s = new Session();
-                    s.setDate(rs.getDate("date"));
-                    s.setIndex(rs.getInt("index"));
-                    s.setAttanded(rs.getBoolean("attanded"));
-                    
+                    s = new Session();                
                     Group g = new Group();
                     g.setId(rs.getInt("gid"));
                     g.setName(rs.getString("gname"));
                     s.setGroup(g);
-
-                    Subject sub = new Subject();
-                    sub.setId(rs.getInt("subid"));
-                    sub.setName(rs.getString("subname"));
-                    g.setSubject(sub);
-
+                    
                     Lecturer l = new Lecturer();
                     l.setId(rs.getInt("lid"));
-                    l.setName(rs.getString("lname"));
                     s.setLecturer(l);
-
+                    
+                    s.setDate(rs.getDate("date"));
+                    s.setId(rs.getInt("sesid"));
                 }
-                //read student
                 Student stu = new Student();
                 stu.setId(rs.getInt("stdid"));
                 stu.setName(rs.getString("stdname"));
                 stu.setMember(rs.getString("stdmember"));
-                //read attandance
+                  
                 Attandance a = new Attandance();
                 a.setStudent(stu);
                 a.setSession(s);
-                a.setPresent(rs.getBoolean("present"));
-                a.setDescription(rs.getString("description"));
+                a.setPresent(rs.getBoolean("present"));   
                 s.getAtts().add(a);
             }
             return s;
@@ -102,26 +87,61 @@ public class ReportDBContext extends DBContext<Session>{
         }
         return null;
     }
+    
+    
 
-     @Override
-    public ArrayList<Session> list() {
-        ArrayList<Session> ses = new ArrayList<>();
-        try {
-            String sql = "SELECT TOP(5) ses.[date]\n"
-                    + "  FROM [Session] ses";
+    public ArrayList<Session> report(int id) {
+        ArrayList<Session> sessions = new ArrayList<>();
+        try {          
+            String sql = "SELECT ses.sesid, l.lid, g.gid, g.gname, s.stdid, s.stdmember, s.stdname, ses.date, a.present\n"
+                    + "           FROM [Session] ses\n"
+                    + "		  INNER JOIN [Group] g ON g.gid = ses.gid\n"
+                    + "		  INNER JOIN [Student_Group] st ON st.gid = g.gid\n"
+                    + "		  INNER JOIN [Student] s ON st.stdid = s.stdid\n"
+                    + "		  INNER JOIN Lecturer l ON l.lid = ses.lid\n"
+                    + "		  LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
+                    + "  WHERE g.gid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
-                Session sl = new Session();
-                sl.setDate(rs.getDate("date"));
-                ses.add(sl);
+            Session s = null;
+            while (rs.next()) {
+                if (s == null) {
+                    s = new Session();                
+                    Group g = new Group();
+                    g.setId(rs.getInt("gid"));
+                    g.setName(rs.getString("gname"));
+                    s.setGroup(g);
+                    
+                    Lecturer l = new Lecturer();
+                    l.setId(rs.getInt("lid"));
+                    s.setLecturer(l);
+                    
+                    s.setDate(rs.getDate("date"));
+                    s.setId(rs.getInt("sesid"));
+                
+                    Student stu = new Student();
+                    stu.setId(rs.getInt("stdid"));
+                    stu.setName(rs.getString("stdname"));
+                    stu.setMember(rs.getString("stdmember"));               
+                    
+                    Attandance a = new Attandance();
+                    a.setPresent(rs.getBoolean("present")); 
+                    a.setStudent(stu);
+                    a.setSession(s);    
+                    s.getAtts().add(a);
+                    sessions.add(s);
+                }
             }
+            return sessions;
         } catch (SQLException ex) {
-            Logger.getLogger(TimeSlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ses;   
+        return null;
+    }  
+
+    @Override
+    public ArrayList<Session> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
 }

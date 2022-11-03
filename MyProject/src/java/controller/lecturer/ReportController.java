@@ -39,9 +39,9 @@ public class ReportController extends HttpServlet {
         Session s = rptDB.get(gid);
         req.setAttribute("ses", s);
         
-        ArrayList<Session> ses = rptDB.list();
-        req.setAttribute("list", ses);
-  
+        ArrayList<Session> sessions = rptDB.report(gid);
+        req.setAttribute("sessions", sessions);
+        
         req.getRequestDispatcher("../view/lecturer/report.jsp").forward(req, resp);
     }
 }

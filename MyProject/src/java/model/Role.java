@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author sonnt
  */
-public class Lecturer {
+public class Role {
     private int id;
     private String name;
-    private ArrayList<Group> groups = new ArrayList<>();
-    private ArrayList<Session> sessions = new ArrayList<>();
+    private ArrayList<Account> accounts = new ArrayList<>();
+    private ArrayList<Feature> features = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -32,21 +32,20 @@ public class Lecturer {
         this.name = name;
     }
 
-    public ArrayList<Group> getGroups() {
-        return groups;
+    public ArrayList<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setGroups(ArrayList<Group> groups) {
-        this.groups = groups;
+    public void setAccounts(ArrayList<Account> accounts) {
+        this.accounts = accounts;
     }
 
-    public ArrayList<Session> getSessions() {
-        return sessions;
+    public ArrayList<Feature> getFeatures() {
+        return features;
     }
 
-    public void setSessions(ArrayList<Session> sessions) {
-        this.sessions = sessions;
+    public void setFeatures(ArrayList<Feature> features) {
+        this.features = features;
     }
-    
     
 }

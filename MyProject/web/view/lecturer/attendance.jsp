@@ -59,9 +59,9 @@
             <h1 style="padding-left: 580px">Take Attendance</h1> <br/>
             <a href="report?gid=${ses.group.id}" style="padding-left: 570px; font-size: 40px"> Group: ${requestScope.ses.group.name}</a><br/>
             <div class="row header" style="padding-left: 50px">
+                <h4 style="padding-left: 10px">Date: ${requestScope.ses.date} / Time Slot: ${requestScope.ses.timeslot.description}</h4><br/>
                 <h4 style="padding-left: 10px">Subject: ${requestScope.ses.group.subject.name}</h4><br/>
                 <h4 style="padding-left: 10px">Room: ${requestScope.ses.room.name} </h4><br/>
-                <h4 style="padding-left: 10px">Date: ${requestScope.ses.date} / Time Slot: ${requestScope.ses.timeslot.description}</h4><br/>
                 <h4 style="padding-left: 10px">Attended: 
                     <c:if test="${requestScope.ses.attanded}">
                         <h4 style="color: green;">Yes</h4>
