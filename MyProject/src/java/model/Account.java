@@ -15,7 +15,16 @@ public class Account {
     private String password;
     private String displayname;
     private ArrayList<Role> roles = new ArrayList<>();
+    private ArrayList<Lecturer> lecturers = new ArrayList<>();
 
+    public ArrayList<Lecturer> getLecturers() {
+        return lecturers;
+    }
+
+    public void setLecturers(ArrayList<Lecturer> lecturers) {
+        this.lecturers = lecturers;
+    }
+    
     public ArrayList<Role> getRoles() {
         return roles;
     }

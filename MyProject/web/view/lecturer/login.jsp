@@ -52,8 +52,7 @@
             <div style="border: 1px solid">
                 <p style="background-color: orange; color: white; padding: 10px;"> Giảng viên Đại học FPT </p>
                 <br/>
-                <form action="login" method="POST">
-                    <p style="padding-left: 100px">Lecturer id : <input type="text" name="loid" value="${param.id}" /> </p><br/>                  
+                <form action="login" method="POST">                  
                     <p style="padding-left: 100px">Username : <input type="text" name="username"/> </p> <br/>                 
                     <p style="padding-left: 100px">Password : <input type="password" name="password" /> </p>  <br/>   
                     <p style="padding-left: 300px"><input  type="submit" value="Login" /></p>        

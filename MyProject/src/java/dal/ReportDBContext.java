@@ -13,11 +13,8 @@ import java.util.logging.Logger;
 import model.Attandance;
 import model.Group;
 import model.Lecturer;
-import model.Room;
 import model.Session;
 import model.Student;
-import model.Subject;
-import model.TimeSlot;
 
 /**
  *
