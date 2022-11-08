@@ -54,7 +54,9 @@
             </div>
             <div class="row col-md-12" style="padding: 10px 0px 10px 10px; background-color: #F5F5F5;">
                 <p><a href="" style="font-size: 15px">Home</a> |
-                    <a href="" style="font-size: 15px">View Schedule</a></p>
+                   <a href="" style="font-size: 15px">View Schedule</a>|
+                   <a href="http://localhost:9999/MyProject//login" style="font-size: 15px">Log out</a>
+                </p>     
             </div> 
             <div class="row col-md-12" style="padding-top: 15px; border-bottom: 1px solid;">
                 <p style="font-weight:bold; font-size: 15px;">Note :</p> 

@@ -32,21 +32,17 @@ public abstract class BaseRoleAuthenticationController extends BaseAuthenticatio
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-        if(checkRole(req, account))
-        {
+        if(checkRole(req, account)){
             processPost(req, resp, account);
-        }
-        else
+        } else
             resp.getWriter().println("access denied!");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-        if(checkRole(req, account))
-        {
+        if(checkRole(req, account)) {
             processGet(req, resp, account);
-        }
-        else
+        } else
             resp.getWriter().println("access denied!");
     }
     

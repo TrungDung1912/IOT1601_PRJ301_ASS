@@ -5,14 +5,22 @@
 
 package controller.lecturer;
 
+import dal.AttandanceDBContext;
+import dal.GroupDBContext;
 import dal.ReportDBContext;
+import dal.StudentDBContext;
+import dal.SubjectDBContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Attandance;
+import model.Group;
 import model.Session;
+import model.Student;
+import model.Subject;
 
 /**
  *
@@ -33,15 +41,7 @@ public class ReportController extends HttpServlet {
     
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int gid = Integer.parseInt(req.getParameter("gid"));
-        
-        ReportDBContext rptDB = new ReportDBContext();
-        Session s = rptDB.get(gid);
-        req.setAttribute("ses", s);
-        
-        ArrayList<Session> sessions = rptDB.report(gid);
-        req.setAttribute("sessions", sessions);
-        
+ 
         req.getRequestDispatcher("../view/lecturer/report.jsp").forward(req, resp);
     }
 }

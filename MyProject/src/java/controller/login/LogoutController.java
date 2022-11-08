@@ -5,19 +5,24 @@
 
 package controller.login;
 
-import dal.LoginDBContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Account;
 
 /**
  *
- * @author ADMIN
+ * @author sonnt
  */
-public class LoginController extends HttpServlet {
+public class LogoutController extends HttpServlet {
+   
+   
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        request.getSession().setAttribute("account", null);
+    } 
+
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,22 +30,17 @@ public class LoginController extends HttpServlet {
         request.getRequestDispatcher("view/lecturer/login.jsp").forward(request, response);
     } 
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        LoginDBContext db = new LoginDBContext();
-        Account account = db.getAccount(username, password);
-        if(account!=null)
-        {
-            request.getSession().setAttribute("account", account);
-            response.sendRedirect("lecturer/timetable?lid=" + account.getLecturers().get(0).getId());
-        }
-        else
-        {
-            request.getRequestDispatcher("view/lecturer/login.jsp").forward(request, response);
-        }
+        processRequest(request, response);
+    }
+
+    
+    @Override
+    public String getServletInfo() {
+        return "Short description";
     }
 
 }

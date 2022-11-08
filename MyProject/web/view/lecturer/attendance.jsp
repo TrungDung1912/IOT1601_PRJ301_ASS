@@ -62,13 +62,12 @@
                 <h4 style="padding-left: 10px">Date: ${requestScope.ses.date} / Time Slot: ${requestScope.ses.timeslot.description}</h4><br/>
                 <h4 style="padding-left: 10px">Subject: ${requestScope.ses.group.subject.name}</h4><br/>
                 <h4 style="padding-left: 10px">Room: ${requestScope.ses.room.name} </h4><br/>
-                <h4 style="padding-left: 10px">Attended: 
-                    <c:if test="${requestScope.ses.attanded}">
-                        <h4 style="color: green;">Yes</h4>
-                    </c:if>
-                    <c:if test="${!requestScope.ses.attanded}">
-                        <h4 style="color: red;">No</h4>
-                    </c:if></h4><br/>
+                <c:if test="${requestScope.ses.attanded}">
+                   <h4 style="color: green;">Attended: Yes</h4>
+                </c:if>
+                <c:if test="${!requestScope.ses.attanded}">
+                    <h4 style="color: red;">Attended: No</h4>
+                </c:if> 
             </div>
             <br/>
             <br/>
@@ -95,7 +94,7 @@
                                     </td>
                                     <td style="border: 1px solid ; padding: auto;">
                                     <center>
-                                        <img src="http://www.fao.org/fileadmin/templates/experts-feed-safety/images/profile-img03.jpg" alt="HE153140" style="height:146px;width:111px;border-width:0px;">
+                                        <img src="https://static.vecteezy.com/system/resources/thumbnails/007/407/996/small/user-icon-person-icon-client-symbol-login-head-sign-icon-design-vector.jpg" alt="HE153140" style="height:146px;width:146px;border-width:0px;">
                                     </center>
                                     </td>
                                     <td style="height: 100px; border: 1px solid; padding-left: 20px">${a.student.member}</td>

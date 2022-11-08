@@ -17,30 +17,26 @@ import model.Account;
  */
 public abstract class BaseAuthenticationController extends HttpServlet{
    
-    private boolean isAuthen(HttpServletRequest req)
+    private boolean isAuthentication(HttpServletRequest req)
     {
         return req.getSession().getAttribute("account") != null;
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(isAuthen(req))
-        {
+        if(isAuthentication(req)){
             Account account = (Account)req.getSession().getAttribute("account");
             doPost(req, resp, account);
-        }
-        else
+        } else
             resp.getWriter().println("access denied!");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(isAuthen(req))
-        {
+        if(isAuthentication(req)) {
             Account account = (Account)req.getSession().getAttribute("account");
             doGet(req, resp, account);
-        }
-        else
+        } else
             resp.getWriter().println("access denied!");
     }
     

@@ -3,7 +3,7 @@
     Created on : Oct 24, 2022, 1:31:46 PM
     Author     : ADMIN
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-left: 30px">
             <div class="row col-md-12" style="border-bottom: 1px solid; padding: 10px;">
                 <div class="col-md-6">
                     <h1>FPT University Academic Portal</h1>
@@ -49,14 +49,27 @@
             </div>
             <br/>
             <br/>
-            <div style="border: 1px solid">
-                <p style="background-color: orange; color: white; padding: 10px;"> Giảng viên Đại học FPT </p>
-                <br/>
-                <form action="login" method="POST">                  
-                    <p style="padding-left: 100px">Username : <input type="text" name="username"/> </p> <br/>                 
-                    <p style="padding-left: 100px">Password : <input type="password" name="password" /> </p>  <br/>   
-                    <p style="padding-left: 300px"><input  type="submit" value="Login" /></p>        
-                </form>
+            <div class="row col-md-12" style="border: 1px solid">
+                <div class="col-md-6">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22688">04/11/22 08:58 : V/v: Mở lớp Bis Block 5 học kỳ Fall 2022</a></li>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22687">03/11/22 22:38 : Thông báo lịch thi lần 1 và lịch thi lần 2 các môn BDP302b, BDP303b học kỳ Fall 2022.</a></li>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22665">01/11/22 22:15 : Thông báo điểm thi kết thúc học phần lần 2 các môn MLN111, JPD116, JPD316, JPD336, CQT201b học kỳ Fall 2022</a></li>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22663">01/11/22 16:14 : HƯỚNG DẪN SINH VIÊN LÀM ĐƠN XIN CHUYỂN NGÀNH, CHUYỂN CƠ SỞ KỲ SPRING 2023.</a></li>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22626">30/10/22 17:13 : Thông báo điểm thi kết thúc học phần lần 2 môn TRS501, TRS601 part 1 học kỳ Fall 2022</a></li>
+                        <li><a href="https://fap.fpt.edu.vn/CmsFAP/NewsDetail.aspx?id=22618">29/10/22 06:50 : Thông báo lịch thi thực hành, lịch thi lần 1 và lịch thi lần 2 các môn học ở HK Fall 2022.</a></li>       
+                    </ul>        
+                </div>
+                <div class="col-md-6" style="border: 1px solid">
+                    <p style="background-color: orange; color: white; padding: 10px;"> Giảng viên Đại học FPT </p>
+                    <br/>
+                    <form action="login" method="POST">                  
+                        <p style="padding-left: 100px">Username : <input type="text" name="username"/> </p> <br/>                 
+                        <p style="padding-left: 100px">Password : <input type="password" name="password" /> </p>  <br/>   
+                        <p style="padding-left: 150px"><input  type="submit" value="Login" /></p> 
+                    </form>
+                </div>
             </div>
         </div>
         <br/>
