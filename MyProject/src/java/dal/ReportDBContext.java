@@ -88,7 +88,7 @@ public class ReportDBContext extends DBContext<Session> {
         return null;
     }
 
-    public ArrayList<Session> show(int stdid, int subid) {
+    public ArrayList<Session> show(int stdid, int subid, int gid) {
         ArrayList<Session> sessions = new ArrayList<>();
         try {
             String sql = "SELECT ses.sesid,ses.[index],ses.date,ses.attanded\n"
@@ -108,11 +108,12 @@ public class ReportDBContext extends DBContext<Session> {
                     + "		INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
                     + "		INNER JOIN [Student] s ON s.stdid = sg.stdid\n"
                     + "		LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
-                    + " WHERE s.stdid = ? AND sub.subid =?" 
+                    + " WHERE s.stdid = ? AND sub.subid =? AND g.gid = ?" 
                     + " ORDER BY ses.[date], tdescription";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, stdid);
             stm.setInt(2, subid);
+            stm.setInt(3, gid);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Session session = new Session();

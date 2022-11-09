@@ -2,7 +2,7 @@
     Document   : report
     Created on : Nov 8, 2022, 9:20:53 PM
     Author     : ADMIN
---%>\
+--%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -49,11 +49,60 @@
                     </tbody>
                 </table>    
             </div>
-            
+
+            <div class="col-md-6">
+
+                <div >
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td >
+                                    <h3>Select a campus/program, term, course ...</h3>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table style="border: 1px solid; width: 100%">
+                        <thead>
+                            <tr style="background-color: aquamarine">       
+                                <th style="border: 1px solid; padding-left: 10px">Campus</th>
+                                <th style="border: 1px solid; padding-left: 10px">Term</th>
+                                <th style="border: 1px solid; padding-left: 10px">Course</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid; padding-left: 10px;">FU-HL</td>
+                                <td style="border: 1px solid; padding-left: 10px;">
+                                        <table>
+                                            <c:forEach items="${requestScope.groups}" var="g">
+                                                <tr>
+                                                    <td><a href="report?stdid=${student.id}&gid=${g.id}&subid=${subject.id}">${g.sem}${g.year}</a></td>
+                                                </tr>
+                                            </c:forEach> 
+                                        </table>
+                                </td> 
+                                <td style="border: 1px solid; padding-left: 10px;">
+                                    <table>
+                                        <c:forEach items="${requestScope.subjects}" var="sub">
+                                            <tr>
+                                                <td><a href="report?stdid=${student.id}&gid=${sub.group.id}&subid=${sub.id}">${sub.name}-0${sub.group.id}</a></td>
+                                            </tr> 
+                                        </c:forEach> 
+                                    </table>       
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>                    
+            <br>
+            <br>
             <div class="col-md-12">
                 <h2 style="text-align: center;">Student: ${requestScope.student.name}</h2>
             </div>
-
+            <br>
+            <br>
             <div class="col-md-12" style="border: 2px solid">        
                 <table style =" width: 100%;">
                     <thead style="background-color: #6B90DA;">
@@ -64,28 +113,29 @@
                             <th style="border: 1px solid; padding-left: 10px">Room</th>
                             <th style="border: 1px solid; padding-left: 10px">Lecturer</th>
                             <th style="border: 1px solid; padding-left: 10px">Group Name</th>
-                            <th style="border: 1px solid; padding-left: 10px">Attandance Status</th>
+                            <th style="border: 1px solid; padding-left: 10px">Attendance Status</th>
                             <th style="border: 1px solid; padding-left: 10px">Lecturer's Comment</th>             
                         </tr>
                     </thead>
+                    <%!int count1 = 0;%>
+                    <%!int count2 = 0;%>
                     <tbody>
                         <c:forEach items="${requestScope.sessions}" var="ses">
-
                             <tr>
                                 <td style="border: 1px solid; padding-left: 10px">${ses.index}</td>
                                 <td style="border: 1px solid; padding-left: 10px">${helper.getDayNameofWeek(ses.date)} ${ses.date}</td>
-                                <td style="border: 1px solid; padding-left: 10px">${ses.timeslot.id}_(${ses.timeslot.description})</td>
+                                <td style="border: 1px solid; padding-left: 10px">Time Slot ${ses.timeslot.id} - (${ses.timeslot.description})</td>
                                 <td style="border: 1px solid; padding-left: 10px">${ses.room.name}</td>
                                 <td style="border: 1px solid; padding-left: 10px">${ses.lecturer.name}</td>
                                 <td style="border: 1px solid; padding-left: 10px">${ses.group.name}</td>
                                 <c:if test="${ses.attanded}">
                                     <c:forEach items="${requestScope.attandances}" var="a" >  
                                         <c:if test="${ses.index eq a.session.index}">
+                                           <c:if test="${a.present}">
+                                                <td style="border: 1px solid; padding-left: 10px"><b style="color: green;">Present</b></td>           
+                                            </c:if>
                                             <c:if test="${!a.present}">
-                                                <td style="border: 1px solid; padding-left: 10px"><font color=red>Absent</font> </td> 
-                                                </c:if>                
-                                                <c:if test="${a.present}">
-                                                <td style="border: 1px solid; padding-left: 10px"><font color=green>Present</font></td> 
+                                                <td style="border: 1px solid; padding-left: 10px"><b style="color: red;">Absent</b></td>           
                                             </c:if>
                                             <td style="border: 1px solid; padding-left: 10px">${a.description}</td> 
                                         </c:if>
@@ -105,9 +155,9 @@
         <br/>
         <div style="padding:10px; border-top: 1px solid;">
             <strong>More note / Chú thích thêm:</strong><br/>
-            <font style="color: green">(Attended):</font>had attended this activity / đã tham gia hoạt động này<br/>
+            <font style="color: green">(Present):</font>had attended this activity / đã tham gia hoạt động này<br/>
             <font style="color: red">(Absent):</font> had NOT attended this activity / đã vắng mặt buổi này<br/>
-            <p>(-): no data was given / chưa có dữ liệu</p>
+            <font style="color: black">(Not yet):</font> had NOT record/ không thấy bản ghi nào
         </div>
         <br/>
         <br/>

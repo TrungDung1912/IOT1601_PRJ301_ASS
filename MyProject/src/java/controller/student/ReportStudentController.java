@@ -61,7 +61,7 @@ public class ReportStudentController extends HttpServlet {
         req.setAttribute("subject", subject);
         
         ReportDBContext rDB = new ReportDBContext();
-        ArrayList<Session> sessions = rDB.show(stdid, subid);
+        ArrayList<Session> sessions = rDB.show(stdid, subid, gid);
         req.setAttribute("sessions", sessions);
         
         

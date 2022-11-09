@@ -78,8 +78,6 @@ public class GroupDBContext extends DBContext<Group>{
         return null;
     }
 
-    
-
     public ArrayList<Group> list(int gid) {
         ArrayList<Group> groups = new ArrayList<>();
         String sql = " select g.gid, g.gname,g.sem, g.year\n"

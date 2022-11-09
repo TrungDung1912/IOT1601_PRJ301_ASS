@@ -83,15 +83,12 @@ public class SubjectDBContext extends DBContext<Subject> {
 
     public ArrayList<Subject> list(int stdid) {
         ArrayList<Subject> subjects = new ArrayList<>();
-
-        String sql = "SELECT s.subid, s.subname\n"
+        String sql = "SELECT s.subid, s.subname, g.gid\n"
                 + "     FROM [Subject] s\n"
                 + "     INNER JOIN [Group] g on s.subid = g.subid\n"
                 + "	INNER JOIN Student_Group sg on sg.gid = g.gid\n"
                 + "	INNER JOIN Student st on st.stdid = sg.stdid\n"
-                + "     WHERE st.stdid = ?\n"
-                + "	GROUP BY s.subid, s.subname";
-
+                + "     WHERE st.stdid = ?\n";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, stdid);
@@ -99,6 +96,8 @@ public class SubjectDBContext extends DBContext<Subject> {
             while (rs.next()) {
                 Subject sub = new Subject();
                 Group g = new Group();
+                g.setId(rs.getInt("gid"));
+                sub.setGroup(g);
                 
                 sub.setId(rs.getInt("subid"));
                 sub.setName(rs.getString("subname"));

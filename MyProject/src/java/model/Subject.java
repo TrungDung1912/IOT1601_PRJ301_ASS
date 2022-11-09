@@ -14,7 +14,16 @@ public class Subject {
     private int id;
     private String name;
     private ArrayList<Group> groups = new ArrayList<>();
+    private Group group;
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+ 
     public int getId() {
         return id;
     }

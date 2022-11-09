@@ -65,18 +65,13 @@ public class AttandanceDBContext extends DBContext<Attandance>{
                 att.setStudent(s);
                 
                 return att;
-
-            }
-            
+            }         
         } catch (SQLException ex) {
             Logger.getLogger(AttandanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-        
+        }     
+        return null;        
     }
 
-    
     public ArrayList<Attandance> list(int stdid) {
         ArrayList<Attandance> atts = new ArrayList<>();
         
