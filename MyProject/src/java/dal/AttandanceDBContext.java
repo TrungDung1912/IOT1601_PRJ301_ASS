@@ -43,11 +43,10 @@ public class AttandanceDBContext extends DBContext<Attandance>{
     public Attandance absent(int stdid) {
         
          try {
-            String sql = "select count(a.present) [absent]\n"
-                     + "                      from Attandance a\n"
-                     + "                      inner join Student s on s.stdid = a.stdid\n"
-                     + "                      where a.stdid = ?\n"
-                     + "		       and a.present = ?";
+            String sql = "SELECT count(a.present) [absent]\n"
+                     + "  FROM Attandance a\n"
+                     + "  INNER JOIN Student s on s.stdid = a.stdid\n"
+                     + "  WHERE a.stdid = ? AND a.present = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, stdid);
             ResultSet rs = stm.executeQuery();
@@ -62,8 +61,7 @@ public class AttandanceDBContext extends DBContext<Attandance>{
                 Student s = new Student();
                 s.setId(rs.getInt("stdid"));
                 s.setName(rs.getString("stdname"));
-                att.setStudent(s);
-                
+                att.setStudent(s); 
                 return att;
             }         
         } catch (SQLException ex) {
@@ -74,7 +72,6 @@ public class AttandanceDBContext extends DBContext<Attandance>{
 
     public ArrayList<Attandance> list(int stdid) {
         ArrayList<Attandance> atts = new ArrayList<>();
-        
         try {
             String sql = "SELECT present, [description]\n"
                     + "   ,ses.sesid,ses.[index]\n"

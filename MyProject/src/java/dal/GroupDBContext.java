@@ -33,8 +33,9 @@ public class GroupDBContext extends DBContext<Group>{
     public void delete(Group model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
     public Group get() {
-        String sql = "SELECT g.gid, g.gname, g.sem, g.year from [Group] g";
+        String sql = "SELECT g.gid, g.gname, g.sem, g.year FROM [Group] g";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
@@ -45,7 +46,6 @@ public class GroupDBContext extends DBContext<Group>{
                 g.setName(rs.getString("gname"));
                 g.setSem(rs.getString("sem"));
                 g.setYear(rs.getInt("year"));
-                
                 return g;                        
             }         
         } catch (SQLException ex) {
@@ -80,11 +80,10 @@ public class GroupDBContext extends DBContext<Group>{
 
     public ArrayList<Group> list(int gid) {
         ArrayList<Group> groups = new ArrayList<>();
-        String sql = " select g.gid, g.gname,g.sem, g.year\n"
-                + "       ,s.subid, s.subname\n"
-                + "        from [Group] g\n"
-                + "		inner join [Subject] s on s.subid = g.subid\n"
-                + "		where g.gid = ?";        
+        String sql = " SELECT g.gid, g.gname,g.sem, g.year ,s.subid, s.subname\n"
+                + "        FROM [Group] g\n"
+                + "		INNER JOIN [Subject] s on s.subid = g.subid\n"
+                + "		WHERE g.gid = ?";        
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, gid);

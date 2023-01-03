@@ -62,7 +62,7 @@
                     </ul>        
                 </div>
                 <div class="col-md-6" style="border: 1px solid">
-                    <p style="background-color: orange; color: white; padding: 10px;"> Giảng viên Đại học FPT </p>
+                    <p style="background-color: aquamarine; color: black; padding: 10px;"> Giảng viên Đại học FPT </p>
                     <br/>
                     <form action="login" method="POST">                  
                         <p style="padding-left: 100px">Username : <input type="text" name="username"/> </p> <br/>                 

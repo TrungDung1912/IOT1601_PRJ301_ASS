@@ -37,20 +37,15 @@ public class SubjectDBContext extends DBContext<Subject> {
     public Subject get() {
         try {
             String sql = "SELECT sub.subid, sub.subname FROM [Subject] sub";
-
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-
             while (rs.next()) {
-
                 Subject sub = new Subject();
 
                 sub.setId(rs.getInt("subid"));
                 sub.setName(rs.getString("subname"));
-
                 return sub;
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,7 +58,7 @@ public class SubjectDBContext extends DBContext<Subject> {
         try {
             String sql = "SELECT sub.subid, sub.subname\n"
                     + "      FROM [Subject] sub\n"
-                    + "      where sub.subid = ?";
+                    + "      WHERE sub.subid = ?";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);

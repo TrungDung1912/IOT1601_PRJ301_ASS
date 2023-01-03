@@ -42,14 +42,14 @@ public class StudentDBContext extends DBContext<Student> {
         try {
             String sql = "SELECT s.stdid, s.stdname\n"
                     + "  ,ses.sesid,ses.[date],ses.[index],ses.[date] ,ses.attanded\n"
-                    + "  ,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
                     + "  ,g.gid,g.gname\n"
-                    + "  FROM Student s\n"
-                    + "          INNER JOIN Student_Group sg on sg.stdid = s.stdid\n"
-                    + "          INNER JOIN [Group] g on g.gid = sg.gid\n"
-                    + "          LEFT JOIN [Session]  ses on ses.gid = g.gid\n"
-                    + "          LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
-                    + "	     WHERE s.stdid = ?";
+                    + "  ,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
+                    + "          FROM Student s\n"
+                    + "                 INNER JOIN Student_Group sg on sg.stdid = s.stdid\n"
+                    + "                 INNER JOIN [Group] g on g.gid = sg.gid\n"
+                    + "                 LEFT JOIN [Session]  ses on ses.gid = g.gid\n"
+                    + "                 LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
+                    + "	 WHERE s.stdid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, stdid);
             ResultSet rs = stm.executeQuery();
